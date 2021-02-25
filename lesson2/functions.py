@@ -29,40 +29,28 @@ def bank_transactions(*paths):
                 file.close()
     return bank_accounts_dictionary
 
-def transactions_from_to(bank_accounts,**params):
-    reduced_bance_accounts = {}
-    min = False
-    max = False
-    for param in params:
-        if param == '_from':
-            min = params[param]
-        elif param == '_to':
-            max = params[param]
-    if min == False and max == False:
-        return bank_accounts
-    elif min == False:
-         for bank_account in bank_accounts:
-            value = bank_accounts[bank_account]
-            if value < max:
-                reduced_bance_accounts[bank_account] = value
-         return reduced_bance_accounts
-    elif max == False:
-         for bank_account in bank_accounts:
-            value = bank_accounts[bank_account]
-            if value > min:
-                reduced_bance_accounts[bank_account] = value
-         return reduced_bance_accounts
-    else:
+#task3
+def erase_accounts_which_overlapped_limit(bank_accounts,**params):
+    bad_accounts = []
+    if '_from' in params:
+        value = params['_from']
         for bank_account in bank_accounts:
-            value = bank_accounts[bank_account]
-            if value > min and value < max:
-                reduced_bance_accounts[bank_account] = value
-        return reduced_bance_accounts
+            if bank_accounts[bank_account] < value:
+                bad_accounts.append(bank_account)
+    if '_to' in params:
+        value = params['_to']
+        for bank_account in bank_accounts:
+            if bank_accounts[bank_account] > value:
+                  bad_accounts.append(bank_account)
+    for account in bad_accounts:
+        bank_accounts.pop(account)
+    return bank_accounts
+
 
 
 bank_accounts = bank_transactions("transactions")
 print(bank_accounts)
-print(transactions_from_to(bank_accounts))
+print(erase_accounts_which_overlapped_limit(bank_accounts,_from=5000,_to=8000))
 
 
 

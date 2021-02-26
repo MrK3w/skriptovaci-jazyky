@@ -1,4 +1,13 @@
 import os
+#task1
+
+def interval(my_function,_from,_step,_to):
+    list_of_steps = []
+    while _from <= _to:
+        list_of_steps.append(my_function(_from))
+        _from += _step
+    return (round(min(list_of_steps)),max(list_of_steps))
+
 
 #task 2
 def bank_transactions(*paths):
@@ -46,8 +55,7 @@ def erase_accounts_which_overlapped_limit(bank_accounts,**params):
         bank_accounts.pop(account)
     return bank_accounts
 
-
-
+print(interval(lambda x: x**2,-2,0.5,2))
 bank_accounts = bank_transactions("transactions")
 print(bank_accounts)
 print(erase_accounts_which_overlapped_limit(bank_accounts,_from=5000,_to=8000))

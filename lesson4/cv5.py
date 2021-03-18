@@ -5,14 +5,19 @@ class Book:
         self.author_name = author_name
         self.book_name = book_name
         self.registry = {}
-        self.check_file(path)
-        self.create_index()
+        if self.check_file(path):
+            self.create_index()
 
     def check_file(self,path):
         if os.path.isfile(path):
            self.path = path
+           return True
         else:
-             raise FileNotFoundError("File wasn't found")
+            try:
+                raise FileNotFoundError
+            except FileNotFoundError:
+                print("File wasn't found")
+                return False
 
     def create_index(self):
         with open(self.path,'r') as read_file:

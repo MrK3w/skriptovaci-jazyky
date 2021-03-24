@@ -99,6 +99,6 @@ class FallDownAtom(Atom):
 
 
 if __name__ == '__main__':
-    size_x, size_y = 400, 300
+    size_x, size_y = 800, 700
     world = ExampleWorld(10, size_x, size_y)
     playground.run((size_x, size_y), world)

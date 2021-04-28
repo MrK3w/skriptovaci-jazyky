@@ -16,9 +16,8 @@ def students_index(request):
     if request.method == 'POST':
         pass
     else:
-
-    students = Student.objects.all()
-    return render(request, 'students-index.html', {'students': students})
+        students = Student.objects.all()
+        return render(request, 'students-index.html', {'students': students})
 
 def teachers_index(request):
     teachers = Teacher.objects.all()

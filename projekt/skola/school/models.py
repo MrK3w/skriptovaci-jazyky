@@ -10,10 +10,22 @@ class Student(models.Model):
     last_name = models.CharField(max_length=50)
     login = models.CharField(max_length=50)
     password = models.CharField(max_length=50)
+    school_year = models.IntegerField(default=1)
 
     def __str__(self):
-        return f"{self.id}. student: {self.first_name} {self.last_name}"
+        return f"{self.id}. year:{self.school_year} student: {self.first_name} {self.last_name}"
 
+    def strong_password(self):
+        if len(self.password) < 5:
+            return "weak password!"
+        else:
+            return "password is ok!"
+
+    def get_color(self):
+        if len(self.password) < 5:
+            return "red"
+        else:
+            return "green"
 
 class Teacher(models.Model):
     first_name = models.CharField(max_length=50)

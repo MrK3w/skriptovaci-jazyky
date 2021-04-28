@@ -1,4 +1,4 @@
-"""skola URL Configuration
+"""URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.2/topics/http/urls/
@@ -20,7 +20,7 @@ import school.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('hello/', school.views.hello),
     path('student/<int:student_id>', school.views.student_info, name='student_info'),
-    path('students', school.views.students_index),
+    path('students', school.views.students_index, name='students_index'),
+    path('teachers', school.views.teachers_index, name='teachers_index'),
 ]

@@ -5,6 +5,11 @@
     <title>Student info</title>
 </head>
 <body>
-Student with id {{ student.id }} is {{ student.first_name }} {{ student.last_name }}
+<h1>Student with id {{ student.id }} is {{ student.first_name }} {{ student.last_name }}</h1>
+<p>
+    <span style="color: {{ student.get_color }}; ">
+{{student.strong_password }} </span>
+</p>
+<p><a href="{% url 'students_index' %}">back</a></p>
 </body>
 </html>

@@ -1,12 +1,103 @@
+{%  load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/5c21821b24.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/students-index.css' %}">
     <meta charset="UTF-8">
     <title>Students</title>
 </head>
 <body>
-{% for student in students %}
-    <li><a href="{% url 'student_info'  student.id %}"> {{ student}} </a></li>
-{%  endfor %}
+<div class="row">
+<div class="col-lg-2">
+<div class="nav-side-menu">
+    <div class="brand"> <img class="logo" src="{% static 'images/vsb.png' %}" alt="vsb" style="height:150px"> </div>
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+
+        <div class="menu-list">
+
+            <ul id="menu-content" class="menu-content collapse out">
+                <li>
+                  <a href="#">
+                  <i class="fa fa-dashboard fa-lg"></i> Dashboard
+                  </a>
+                </li>
+                 <li class="active">
+                  <a href="{% url 'students_index'%}">
+                 <i class="fas fa-user"></i> Students
+                  </a>
+                </li>
+                <li>
+                  <a href="{% url 'teachers_index'%}">
+                 <i class="fas fa-chalkboard-teacher"></i> Teachers
+                  </a>
+                </li>
+                <li  data-toggle="collapse" data-target="#products" class="collapsed">
+                  <a href="#"><i class="fa fa-gift fa-lg"></i> UI Elements <span class="arrow"></span></a>
+                </li>
+                <ul class="sub-menu collapse" id="products">
+                    <li class="active"><a href="#">CSS3 Animation</a></li>
+                    <li><a href="#">General</a></li>
+                    <li><a href="#">Buttons</a></li>
+                    <li><a href="#">Tabs & Accordions</a></li>
+                    <li><a href="#">Typography</a></li>
+                    <li><a href="#">FontAwesome</a></li>
+                    <li><a href="#">Slider</a></li>
+                    <li><a href="#">Panels</a></li>
+                    <li><a href="#">Widgets</a></li>
+                    <li><a href="#">Bootstrap Model</a></li>
+                </ul>
+
+            </ul>
+     </div>
+</div>
+</div>
+<div class="col-lg-10">
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">First name</th>
+      <th scope="col">Last name</th>
+      <th scope="col">Login</th>
+        <th scope="col">Show detail</th>
+        <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for student in students %}
+       <tr>
+           <td>{{student.id }}</td>
+      <td>{{ student.first_name }}</td>
+      <td>{{ student.last_name }}</td>
+      <td>{{ student.login }}</td>
+           <td>
+           <p data-placement="top" data-toggle="tooltip" title="Edit">
+               <a href="{% url 'student_info'  student.id %}">
+           <button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" >
+               <span class="glyphicon glyphicon-search">
+               </span>
+           </button>
+               </a>
+           </p>
+           </td>
+        <td>
+            <p data-placement="top" data-toggle="tooltip" title="Delete">
+                <button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" >
+                    <span class="glyphicon glyphicon-trash"></span>
+                </button>
+            </p>
+        </td>
+       </tr>
+  {%  endfor %}
+
+  </tbody>
+</table>
+</div>
+</div>
+</div>
 </body>
 </html>
